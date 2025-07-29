@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: php-web-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: php-web-app
+  template:
+    metadata:
+      labels:
+        app: php-web-app
+    spec:
+      containers:
+      - name: php-container
+        image: your-dockerhub-username/php-web-app:latest
+        ports:
+        - containerPort: 80
