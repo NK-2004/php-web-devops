@@ -1,21 +1,22 @@
-name: PHP CI/CD
+name: CI/CD Pipeline
 
 on:
   push:
-    branches: [main]
+    branches: [ main ]
 
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v3
+      - name: Checkout Code
+        uses: actions/checkout@v2
 
       - name: Log in to DockerHub
         run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
-      - name: Build and push Docker image
-        run: |
-          docker build -t ${{ secrets.DOCKER_USERNAME }}/php-web-app:latest .
-          docker push ${{ secrets.DOCKER_USERNAME }}/php-web-app:latest
+      - name: Build Docker Image
+        run: docker build -t nitin123456222/php-web-app:latest .
+
+      - name: Push Docker Image
+        run: docker push nitin123456222/php-web-app:latest
