@@ -1,8 +1,8 @@
-# Use official PHP Apache image
 FROM php:8.2-apache
 
-# Copy PHP app code into container
+# Install net-tools to use netstat
+RUN apt-get update && apt-get install -y net-tools
+
 COPY . /var/www/html/
 
-# Expose port 80
 EXPOSE 80
